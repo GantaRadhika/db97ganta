@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1= title
+  h1= title
+  p number of rows   : #{query.rows};
+  p number of colums: #{query.cols};
+  <br>
+  - let rows=Number(query.rows)
+  - let cols=Number(query.cols)
+  <br>
+  if (!(Number.isInteger(rows)) ||! (Number.isInteger(cols)))
+    p values are not in number 
+  else if rows>6
+    p beyond the boundary rows
+  else if cols>6
+    p beyond the boundary cols
+  else 
+    table#outer
+      - for(let k=0;k<rows;k++){
+          tr#middle
+            - for(let l=0;l<cols;l++){
+                td= k+l%rows
+            -}
+
+      -}  
+       
