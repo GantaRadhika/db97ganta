@@ -2,14 +2,12 @@ extends layout
 
 block content
   h1= title
-  - var j=0
-  each i,index in [[4,"hot","eggburji"],[5,"medium","omlete"],[10,"light","eggtikka"]]
-    div(class ="container-fluid" id="index" onclick=`buy(${index})`)
-         div(class="row") 
-           div(class="col-sm-2") -- #{i[0]}
-           div(class="col-sm-2") -- #{i[1]}
-           div(class="col-sm-2") -- #{i[2]}
+  - let Eggfry = results;
   script.
-    function buy(al){
-      alert(`purchased item ${al}.`)
-    } 
+    function buy(x){
+      alert('Purchased Item: ' + x)
+   } 
+  div(class='container-fluid')
+    div(class='row')
+      each m, index in Eggfry 
+       div(class="col-sm-2" onclick=`buy(${index})`) #{m.Onions} #{m.spices} #{m.curry} 

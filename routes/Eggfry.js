@@ -1,9 +1,9 @@
-var express = require('express');
+var express = require("express");
+const Eggfry_controlers= require('../controllers/Eggfry'); 
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('Eggfry', { title: 'Search Result by Eggfry' });
-});
+router.get('/', Eggfry_controlers.Eggfry_view_all_Page);
+router.post('/', Eggfry_controlers.Eggfry_create_post);
 
 module.exports = router;
