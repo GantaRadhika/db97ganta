@@ -1,0 +1,41 @@
+extends layout
+
+block content
+ h1= title
+ form(id='EggfryForm', action="/resource/Eggfry", method="POST")
+    div.form-group
+    div(class="row g-3 align-items-center")
+      div(class="col-1")
+         label.EggfryAttr(for='Eggfry_type',class="col-form-label") Eggfry Onions 
+      div(class="col-auto")
+         input#Eggfry_type(type='Number', name='Eggfry_type',class="form-control")
+    div.form-group
+    div(class="row g-3 align-items-center")
+      div(class="col-1")
+         label.EggfryAttr(for='quantity', class="col-form-label") Eggfry spices 
+      div(class="col-auto")
+         input#quantity(type='String', name='quantity',class="form-control")
+    div.form-group
+    div(class="row g-3 align-items-center")
+      div(class="col-1")
+         label.EggfryAttr(for='cost',class="col-form-label") Eggfry curry 
+      div(class="col-auto")
+         input#cost(type='String', name='cost',class="form-control")
+    input(type="submit",class="btn btn-primary")
+ script.
+    document.forms['EggfryForm'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    // TODO do something here to show user that form is being submitted
+    fetch(event.target.action, {
+    method: 'POST',
+    body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+    }).then((resp) => {
+    return resp.json(); // or resp.text() or whatever the server sends
+    }).then((body) => {
+    alert("Save succeded")
+    // TODO handle body
+    }).catch((error) => {
+    // TODO handle error
+    alert("Save failed " + error )
+    });
+    });

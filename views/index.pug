@@ -2,15 +2,15 @@ extends layout
 
 block content
   h1= title
-  p Welcome to my world I am Radhika Reddy Ganta#{title}
-  button(type="button", class="btn btn-secondary", onclick="update()") PresMe
-  div(id="target") Display
-  script. 
-        let b = 0;
-        function update()
-          {
-             b=b+1;
-             document.getElementById("target").innerHTML =b;
-          };
-          
-       a(href="https://radhikaserver1.herokuapp.com/") link to array 
+  p Welcome to #{title} Radhika ganta
+  button(type='button',onclick='update()',class='btn btn-primary') Press Me
+  div(id="target") text of Display 
+  script.
+    var client_count = 0;
+    function update(){
+      client_count +=1;
+      document.getElementById("target").innerHTML = "Value now " + client_count;
+    }
+  a(href='Eggfry') Eggfry
+
+  

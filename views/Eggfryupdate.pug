@@ -1,0 +1,57 @@
+extends layout
+
+block content
+  h1= title
+
+  if(toShow == null)
+    h2 No instance to update
+  else
+    - let Eggfryid = toShow._id
+    - let Eggfry_type = toShow.Onions
+    - let Eggfryquantity = toShow.spices
+    - let Eggfrycost = toShow.curry 
+    - let actionid = "/resource/Eggfry/" + Eggfryid
+    script let actionid = "#{actionid}"
+    div.row(class='mb-2')
+    div.mr-1 ID is 
+      span(style="color:red")  #{Eggfryid}
+    form(id='EggfryForm', action= actionid, method="PUT")
+      div.form-group
+      div(class="row g-3 align-items-center")
+        div(class="col-1")
+          label.EggfryAttr(for='Eggfry_type',class="col-form-label") Eggfry Onions
+        div(class="col-auto")
+          input#Eggfry_type(type='number', name='Eggfry_type',class="form-control", value=Eggfry_type)
+      div.form-group
+      div(class="row g-3 align-items-center")
+        div(class="col-1")
+          label.EggfryAttr(for='quantity',class="col-form-label") Eggfry spices
+        div(class="col-auto")
+          input#quantity(type='String', name='quantity',class="form-control", value=Eggfryquantity)
+      div.form-group
+      div(class="row g-3 align-items-center")
+        div(class="col-1")
+          label.EggfryAttr(for='cost',class="col-form-label") Eggfry curry
+        div(class="col-auto")
+          input#cost(type='String', name='cost',class="form-control", value=Eggfrycost)
+      input(class="btn btn-danger m-2" type="submit")
+        //- button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+      button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+        
+  script.
+    document.forms['EggfryForm'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    // TODO do something here to show user that form is being submitted
+    fetch(event.target.action, {
+    method: 'PUT',
+    body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+    }).then((resp) => {
+    return resp.json(); // or resp.text() or whatever the server sends
+    }).then((body) => {
+    alert("Save succeded")
+    // TODO handle body
+    }).catch((error) => {
+    // TODO handle error
+    alert("Save failed " + error )
+    });
+    });

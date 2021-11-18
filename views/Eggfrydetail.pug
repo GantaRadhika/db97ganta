@@ -1,0 +1,38 @@
+extends layout
+
+block content
+ h1= title
+
+  if(toShow == null)
+    h2 No instance to detail
+  else
+    - let Eggfryid = toShow._id
+    - let Eggfry_type = toShow.Onions
+    - let Eggfryquantity = toShow.spices
+    - let Eggfrycost = toShow.curry
+    - let actionid = "/resource/Eggfry/" + Eggfryid
+    script let actionid = "#{actionid}"
+    div
+    div.row
+    div(class='EggfryAttr mr-3') Eggfry ID is: 
+      span(style="color:red") #{Eggfryid}
+    div.row
+    div(class='EggfryAttr mr-3') Eggfry Onions is: 
+      span(style="color:red") #{Eggfry_type}
+    div.row
+    div(class='EggfryAttr mr-3') Eggfry spices is: 
+      span(style="color:red") #{Eggfryquantity}
+    div.row
+    div(class='EggfryAttr mr-3') Eggfry curries is:
+      span(style="color:red") #{Eggfrycost}
+    button(class="btn btn-primary m-2" onclick="detailOnid()") Goback
+    button(class="btn btn-danger m-2" onclick="cancel()") Cancel
+
+  script.
+    function cancel() {
+    // Go back to the home page for the Eggfry collection
+    window.location.href='/Eggfry'
+    }
+    function detailOnid() {
+    window.location.href='/Eggfry'
+    }

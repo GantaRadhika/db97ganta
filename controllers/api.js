@@ -1,4 +1,5 @@
 // API for our resources 
+const Eggfry=require("../models/Eggfry")
 exports.api = function(req, res) { 
     res.write('['); 
     res.write('{"resource":"Eggfry", '); 
